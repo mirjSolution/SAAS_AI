@@ -38,7 +38,9 @@ export async function POST(req: Request) {
         stripeSubscriptionId: subscription.id,
         stripeCustomerId: subscription.customer as string,
         stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 100),
+        stripeCurrentPeriodEnd: new Date(
+          subscription.current_period_end * 1000
+        ),
       },
     });
   }
