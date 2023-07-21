@@ -7,7 +7,6 @@ import { Music } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { ChatCompletionRequestMessage } from 'openai';
 
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -18,9 +17,9 @@ import { formSchema } from './constants';
 import { Button } from '@/components/ui/button';
 import { Loader } from '@/components/Loader';
 
-const MusicPage = () => {
+const AudioPage = () => {
   const router = useRouter();
-  const [music, setMusic] = useState<string>();
+  const [audio, setAudio] = useState<string>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,11 +32,11 @@ const MusicPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setMusic(undefined);
+      setAudio(undefined);
 
-      const response = await axios.post('/api/music', values);
+      const response = await axios.post('/api/audio', values);
 
-      setMusic(response.data.audio);
+      setAudio(response.data.audio);
       form.reset();
     } catch (error: any) {
       // TODO: Open Pro Model
@@ -50,8 +49,8 @@ const MusicPage = () => {
   return (
     <div>
       <Heading
-        title='Music Generation'
-        description='Turn your prompt into music.'
+        title='Audio Generation'
+        description='Turn your prompt into 5 seconds audio.'
         icon={Music}
         iconColor='text-emerald-500'
         bgColor='bg-emerald-500/10'
@@ -93,10 +92,10 @@ const MusicPage = () => {
               <Loader />
             </div>
           )}
-          {!music && !isLoading && <Empty label='No music generated.' />}
-          {music && (
+          {!audio && !isLoading && <Empty label='No audio generated.' />}
+          {audio && (
             <audio controls className='w-full mt-8'>
-              <source src={music} />
+              <source src={audio} />
             </audio>
           )}
         </div>
@@ -105,4 +104,4 @@ const MusicPage = () => {
   );
 };
 
-export default MusicPage;
+export default AudioPage;

@@ -22,11 +22,11 @@ const tools = [
     href: '/conversation',
   },
   {
-    label: 'Music Generation',
+    label: 'Audio Generation',
     icon: Music,
     color: 'text-emerald-500',
     bgColor: 'bg-emerald-500/10',
-    href: '/music',
+    href: '/audio',
   },
   {
     label: 'Image Generation',

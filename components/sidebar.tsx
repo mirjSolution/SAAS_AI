@@ -44,9 +44,9 @@ const routes = [
     color: 'text-orange-700',
   },
   {
-    label: 'Music Generation',
+    label: 'Audio Generation',
     icon: Music,
-    href: '/music',
+    href: '/audio',
     color: 'text-emerald-500',
   },
   {
