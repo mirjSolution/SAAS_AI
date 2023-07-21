@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Sidebar from '@/components/sidebar';
 
 const MobileSidebar = () => {
+  // Remove hydration error
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
