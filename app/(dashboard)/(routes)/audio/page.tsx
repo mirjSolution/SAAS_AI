@@ -16,8 +16,10 @@ import { Empty } from '@/components/empty';
 import { formSchema } from './constants';
 import { Button } from '@/components/ui/button';
 import { Loader } from '@/components/Loader';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 const AudioPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [audio, setAudio] = useState<string>();
 
@@ -39,8 +41,9 @@ const AudioPage = () => {
       setAudio(response.data.audio);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Model
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
